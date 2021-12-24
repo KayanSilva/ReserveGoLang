@@ -23,17 +23,6 @@ func main() {
 	for {
 		exibeMenu()
 
-		// Estrutura de if
-		// if comando == 1 {
-		// 	fmt.Println("Monitorando...")
-		// } else if comando == 2 {
-		// 	fmt.Println("Exibindo logs...")
-		// } else if comando == 0 {
-		// 	fmt.Println("Saindo do...")
-		// } else {
-		// 	fmt.Println("Não conheço este comando")
-		// }
-
 		comando := leComando()
 
 		// Estrutura com switch

@@ -1,1 +1,57 @@
-[{"id":1,"nome":"Toscana","preco":49.5},{"id":2,"nome":"Marguerita","preco":79.5},{"id":3,"nome":"Atum com queijo","preco":69.5},{"id":4,"nome":"Calabresa","preco":45},{"id":5,"nome":"Frango com catupiry","preco":55},{"id":6,"nome":"Portuguesa","preco":59.5},{"id":7,"nome":"Quatro queijos","preco":65},{"id":8,"nome":"Pepperoni","preco":75},{"id":9,"nome":"Vegetariana","preco":60},{"id":10,"nome":"Bacon","preco":58.5},{"id":11,"nome":"Brocolis","preco":49.5}]
+[
+    {
+        "id": 1,
+        "nome": "Toscana",
+        "preco": 49.5
+    },
+    {
+        "id": 2,
+        "nome": "Marguerita",
+        "preco": 79.5
+    },
+    {
+        "id": 3,
+        "nome": "Atum com queijo",
+        "preco": 69.5
+    },
+    {
+        "id": 4,
+        "nome": "Calabresa",
+        "preco": 45
+    },
+    {
+        "id": 5,
+        "nome": "Frango com catupiry",
+        "preco": 55
+    },
+    {
+        "id": 6,
+        "nome": "Portuguesa",
+        "preco": 59.5
+    },
+    {
+        "id": 7,
+        "nome": "Quatro queijos",
+        "preco": 65
+    },
+    {
+        "id": 8,
+        "nome": "Pepperoni",
+        "preco": 75
+    },
+    {
+        "id": 9,
+        "nome": "Vegetariana",
+        "preco": 60
+    },
+    {
+        "id": 10,
+        "nome": "Bacon",
+        "preco": 58.5
+    },
+    {
+        "id": 11,
+        "nome": "Brocolis",
+        "preco": 49.5
+    }
+]

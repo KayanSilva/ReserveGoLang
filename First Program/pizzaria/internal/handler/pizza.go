@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"net/http"
 	"pizzaria/internal/data"
 	"pizzaria/internal/models"
 	"pizzaria/internal/service"
@@ -10,7 +11,7 @@ import (
 )
 
 func GetPizzas(ctx *gin.Context) {
-	ctx.JSON(200, gin.H{
+	ctx.JSON(http.StatusOK, gin.H{
 		"pizzas": data.Pizzas,
 	})
 }
@@ -19,30 +20,30 @@ func GetPizzasById(c *gin.Context) {
 	idParam := c.Param("id")
 	id, err := strconv.Atoi(idParam)
 	if err != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"erro": err.Error()})
 		return
 	}
 	for _, p := range data.Pizzas {
 		if p.ID == id {
-			c.JSON(200, p)
+			c.JSON(http.StatusOK, p)
 			return
 		}
 	}
-	c.JSON(404, gin.H{"message": "Pizza not found"})
+	c.JSON(http.StatusNotFound, gin.H{"message": "Pizza not found"})
 }
 
 func PostPizza(ctx *gin.Context) {
 	var newPizza models.Pizza
 
 	if err := ctx.ShouldBindJSON(&newPizza); err != nil {
-		ctx.JSON(400, gin.H{
+		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
 
 	if err := service.ValidatePrice(&newPizza); err != nil {
-		ctx.JSON(400, gin.H{
+		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
@@ -50,7 +51,7 @@ func PostPizza(ctx *gin.Context) {
 	newPizza.ID = len(data.Pizzas) + 1
 	data.Pizzas = append(data.Pizzas, newPizza)
 	data.SavePizza()
-	ctx.Status(201)
+	ctx.Status(http.StatusCreated)
 }
 
 func DeletePizzaById(c *gin.Context) {
@@ -58,7 +59,7 @@ func DeletePizzaById(c *gin.Context) {
 	id, err := strconv.Atoi(idParam)
 
 	if err != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
@@ -68,7 +69,7 @@ func DeletePizzaById(c *gin.Context) {
 			data.Pizzas = append(data.Pizzas[:i], data.Pizzas[i+1:]...)
 			data.SavePizza()
 
-			c.Status(204)
+			c.Status(http.StatusNoContent)
 			return
 		}
 	}
@@ -81,20 +82,20 @@ func UpdatePizzaById(c *gin.Context) {
 	id, err := strconv.Atoi(idParam)
 
 	if err != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
 
 	var updatePizza models.Pizza
 	if err := c.ShouldBindJSON(&updatePizza); err != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
 
 	if err := service.ValidatePrice(&updatePizza); err != nil {
-		c.JSON(400, gin.H{
+		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error()})
 		return
 	}
@@ -105,10 +106,10 @@ func UpdatePizzaById(c *gin.Context) {
 			data.Pizzas[i].ID = id
 			data.SavePizza()
 
-			c.Status(204)
+			c.Status(http.StatusNoContent)
 			return
 		}
 	}
 
-	c.JSON(404, gin.H{"message": "pizza not found"})
+	c.JSON(http.StatusNotFound, gin.H{"message": "pizza not found"})
 }

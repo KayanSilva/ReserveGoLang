@@ -17,8 +17,10 @@ func main() {
 	router := gin.Default()
 	router.GET("/pizzas", handler.GetPizzas)
 	router.GET("/pizzas/:id", handler.GetPizzasById)
-	router.POST("pizzas", handler.PostPizza)
-	router.DELETE("/pizzas/:id", handler.DeletePizzaById)
+	router.POST("/pizzas", handler.PostPizza)
 	router.PUT("/pizzas/:id", handler.UpdatePizzaById)
+	router.DELETE("/pizzas/:id", handler.DeletePizzaById)
+
+	router.POST("/pizzas/:id/reviews", handler.PostReview)
 	router.Run()
 }

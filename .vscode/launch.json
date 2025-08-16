@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "dockerfile",
+            "name": "Pizzaria Debug Program",
+            "type": "go",
             "request": "launch",
-            "name": "Docker: Build",
-            "dockerfile": "Dockerfile",
-            "contextPath": "${workspaceFolder}/First Program/pizzaria"
+            "mode": "debug",
+            "program": "${workspaceFolder}/First Program/pizzaria/cmd/main.go"
         }
     ]
 }

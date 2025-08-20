@@ -90,3 +90,16 @@ func (s *Stock) RemoveItem(itemID int, quantity int, user string) error {
 
 	return fmt.Errorf("item with ID %d not found", itemID)
 }
+
+func FindBy[T any](data []T, comparator func(T) bool) ([]T, error) {
+	var result []T
+	for _, v := range data {
+		if comparator(v) {
+			result = append(result, v)
+		}
+	}
+	if len(result) == 0 {
+		return nil, fmt.Errorf("not found any item")
+	}
+	return result, nil
+}

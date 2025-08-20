@@ -36,5 +36,29 @@ func main() {
 	}
 
 	fmt.Printf("Total cost of all items in stock: R$ %.2f\n", stock.CalculateTotalCost())
+
+	itemsSearch, err := services.FindBy(itens, func(item models.Item) bool {
+		return item.Name == "Laptop"
+	})
+
+	if err != nil {
+		fmt.Println("Error getting items by name:", err)
+	}
+
+	fmt.Println("Items found: ", itemsSearch)
+
+	alura := services.Supplier{
+		CNPJ:    "12.345.678/0001-95",
+		Contact: "Alura Suporte",
+		City:    "São Paulo",
+	}
+	fmt.Println("Supplier Info:", alura.GetInfo())
+
+	if alura.CheckAvailability(5, 10) {
+		fmt.Println("Supplier has enough stock available.")
+	} else {
+		fmt.Println("Supplier does not have enough stock available.")
+	}
+
 	fmt.Println("Stock system finished running.")
 }

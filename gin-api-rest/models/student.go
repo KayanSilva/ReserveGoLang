@@ -1,12 +1,23 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"fmt"
+
+	"gopkg.in/validator.v2"
+	"gorm.io/gorm"
+)
 
 type Student struct {
 	gorm.Model
-	Name string `json:"name"`
-	CPF  string `json:"cpf"`
-	RG   string `json:"rg"`
+	Name string `json:"name" validate:"nonzero"`
+	RG   string `json:"rg,omitempty" validate:"len=9, regexp=^[0-9]*$"`
+	CPF  string `json:"cpf" validate:"len=11, regexp=^[0-9]*$"`
 }
 
-var Students []Student
+func ValidateFields(student *Student) error {
+	if err := validator.Validate(student); err != nil {
+		return fmt.Errorf("validation failed: %v", err)
+	}
+
+	return nil
+}

@@ -136,3 +136,13 @@ func UpdateStudent(c *gin.Context) {
 	database.DB.Model(&student).UpdateColumns(student)
 	c.Status(http.StatusNoContent)
 }
+
+func GetIndexPage(c *gin.Context) {
+	var students []models.Student
+	database.DB.Find(&students)
+	c.HTML(http.StatusOK, "index.html", gin.H{"students": students})
+}
+
+func NotFoundPage(c *gin.Context) {
+	c.HTML(http.StatusNotFound, "404.html", nil)
+}

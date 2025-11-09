@@ -1,7 +1,6 @@
 package database
 
 import (
-	"github.com/KayanSilva/ReserveGoLang/api-rest/models"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -17,5 +16,4 @@ func Connect() {
 	if err != nil {
 		panic("Failed to connect to database!")
 	}
-	DB.AutoMigrate(&models.Personality{})
 }

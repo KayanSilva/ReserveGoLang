@@ -40,3 +40,27 @@ func NewPersonality(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(personality)
 }
+
+func DeletePersonality(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, _ := strconv.Atoi(vars["id"])
+	var personality models.Personality
+	database.DB.Delete(&personality, id)
+	r.Response.StatusCode = 204
+}
+
+func EditPersonality(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	id, _ := strconv.Atoi(vars["id"])
+	var personality models.Personality
+
+	database.DB.First(&personality, id)
+	if personality.ID == 0 {
+		http.Error(w, "Personality not found", http.StatusNotFound)
+		return
+	}
+	json.NewDecoder(r.Body).Decode(&personality)
+	database.DB.Save(&personality)
+
+	r.Response.StatusCode = 204
+}

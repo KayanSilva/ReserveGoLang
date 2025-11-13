@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 	"myapi/internal/config"
-	"myapi/routes"
+	"myapi/internal/routes"
 	"net/http"
 )
 

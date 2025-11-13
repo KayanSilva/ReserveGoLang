@@ -13,8 +13,6 @@ import (
 )
 
 func ListItensHandler(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Type", "application/json")
 	repository := repositories.NewItemRepository()
 	items, err := repository.ListAll()
 	if err != nil {
@@ -25,7 +23,6 @@ func ListItensHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetItenHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	idStr := vars["id"]
 	if idStr == "" {
@@ -46,7 +43,6 @@ func GetItenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetItenByCodigoHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	vars := mux.Vars(r)
 	cod := vars["code"]
 	if cod == "" {
@@ -62,8 +58,6 @@ func GetItenByCodigoHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateItenHandler(w http.ResponseWriter, r *http.Request) {
-
-	w.Header().Set("Content-Type", "application/json")
 	var item models.Item
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		http.Error(w, "Erro ao decodificar o item", http.StatusBadRequest)
@@ -84,7 +78,6 @@ func CreateItenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func UpdateItenHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
 	var item models.Item
 	if err := json.NewDecoder(r.Body).Decode(&item); err != nil {
 		http.Error(w, "Erro ao decodificar o item", http.StatusBadRequest)
@@ -98,7 +91,6 @@ func UpdateItenHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func DeleteItenHandler(w http.ResponseWriter, r *http.Request) {
-
 	idStr := r.URL.Query().Get("id")
 	if idStr == "" {
 		http.Error(w, "ID não fornecido", http.StatusBadRequest)

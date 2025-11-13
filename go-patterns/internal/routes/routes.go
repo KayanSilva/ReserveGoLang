@@ -2,8 +2,8 @@ package routes
 
 import (
 	"myapi/internal/handlers"
-	"myapi/internal/middleware"
 
+	"github.com/KayanSilva/ReserveGoLang/pkg/middleware"
 	"github.com/gorilla/mux"
 )
 

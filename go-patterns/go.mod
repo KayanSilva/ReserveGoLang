@@ -3,6 +3,7 @@ module myapi
 go 1.24.5
 
 require (
+	github.com/KayanSilva/ReserveGoLang/pkg v0.0.0-20251113015315-e4faa0e2cbfc
 	github.com/gorilla/mux v1.8.1
 	gorm.io/driver/postgres v1.5.11
 	gorm.io/gorm v1.25.12

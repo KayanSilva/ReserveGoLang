@@ -1,0 +1,14 @@
+Para rodar os testes dentro do docker
+docker compose exec api go test ./test -v
+
+Golangci-cli
+Para executar no Linux
+docker run -t --rm -v $(pwd):/app -w /app golangci/golangci-lint:v2.6.1 golangci-lint run
+Para executar no Windows
+docker run -t --rm -v "$(Get-Location):/app" -w /app golangci/golangci-lint:v2.6.1 golangci-lint run
+
+Rodar comandos automatizados
+No terminal do Linux
+make test
+No terminal do Windows
+.\maketowindows.bat

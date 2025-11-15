@@ -20,4 +20,4 @@ jobs:
         go-version: '1.25'
 
     - name: ci
-      run: make CI
+      run: make ci

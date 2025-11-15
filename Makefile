@@ -1,3 +1,5 @@
+open:
+	cd good-practices
 start:
 	docker compose up -d
 test:
@@ -5,4 +7,4 @@ test:
 lint:
 	docker run --rm -v $(PWD):/app -w /app golangci/golangci-lint golangci-lint run
 ci:
-	start test lint
+	open start test lint

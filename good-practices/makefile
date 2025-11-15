@@ -1,5 +1,5 @@
 start:
-	cd good-practices && docker compose up -d
+	ls
 test:
 	cd good-practices && docker compose exec api go test ./test -v
 lint:

@@ -1,6 +1,10 @@
 @echo off
 REM Script para rodar testes e lint no Windows
 
+REM Iniciar docker compose
+echo Docker compose up...
+docker compose up -d
+
 REM Executa o teste no container Docker
 echo Executando test...
 docker compose exec api go test ./test -v

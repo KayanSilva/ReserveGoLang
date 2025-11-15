@@ -22,5 +22,8 @@ jobs:
     - name: Open folder
       run: cd good-practices
 
+    - name: Files in the folder
+      run: ls
+
     - name: ci
       run: make ci
